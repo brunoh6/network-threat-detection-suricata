@@ -29,7 +29,6 @@ network-threat-detection-suricata/
 │   ├── detection_rules_es.md       # Versión en español
 │   └── screenshots/                # Packet captures and system output
 ├── README.md
-└── LICENSE
 
 ## Highlights
 
