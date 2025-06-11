@@ -22,13 +22,9 @@ This repository presents a complete lab project focused on deploying and configu
 - Passive port scanning (nmap)
 
 ## Repository Structure
-
-network-threat-detection-suricata/
-├── lab3_suricata_ids/
-│   ├── detection_rules_en.md       # Report in English
-│   ├── detection_rules_es.md       # Versión en español
-│   └── screenshots/                # Packet captures and system output
-├── README.md
+├── detection_rules_en.md       # Report in English
+├── detection_rules_es.md       # Versión en español
+└── screenshots/                # Packet captures and system output
 
 ## Highlights
 
