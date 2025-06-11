@@ -16,12 +16,16 @@ Deploy and configure Suricata as a Network Intrusion Detection System (NIDS) in 
 - **Network:** 192.168.6.0/24
 - **Internet access:** Provided through GW1 with NAT and DHCP
 
+![topology](screenshot/topology.jpg)
+
 ## Key Configurations
 
 - **GW1 Router**
   - NAT overload via access-list
   - DHCP pool for 192.168.6.0/24 with exclusions
   - Default route: `0.0.0.0/0 -> 192.168.36.2`
+ 
+  ![brief](screenshot/ip_brief.jpg)
 
 - **SPAN Port on Switch**
   - Mirrored Gi0/2 traffic to interface Gi1/0 (connected to Suricata node)
@@ -32,26 +36,36 @@ Deploy and configure Suricata as a Network Intrusion Detection System (NIDS) in 
    - Interface `ens4` (e1) assigned via DHCP: 192.168.6.13
    - Promiscuous mode activated via systemd service
 
+![ubuntu](screenshot/ubuntu_interface.jpg)
+
 2. **Suricata Installation**
    - Version 6.0.4 installed via PPA
    - `suricata.yaml` updated:
      - `HOME_NET: [192.168.6.0/24]`
      - `af-packet` set to monitor `ens4`
+    
+![suricata1](screenshot/yaml.jpg)
 
 3. **Traffic Rules**
    - Custom rule added for HTTP traffic: `sid:1000002`
    - Detection for SYN-flood attacks simulated via `hping3`
    - Kali Linux detection rule disabled by `sid:2022973` using `disable.conf`
+  
+![rules](screenshot/rule.jpg)
 
 4. **Traffic Generation**
    - ICMP requests using `ping` from VPC
    - HTTP access via browser/curl to Apache2
    - Nmap scanning and SYN-flood attack from Kali
+  
+![icmp](screenshot/allow_icmp.jpg)
 
 5. **Logging and Analysis**
    - Suricata logs reviewed in `/var/log/suricata/fast.log`
    - Packet capture verified with `tcpdump`
    - Alerts correlated with Wireshark output
+
+![logs](screenshot/check_one.jpg)
 
 ## Results
 
